@@ -71,16 +71,17 @@ appInsights.setup(ikey)
     .setSendLiveMetrics(false)
     .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
     .start();
-
+let client = appInsights.defaultClient;
 
 // fields
 const port = process.env.PORT || 3000;
-const ikey = process.env.InstrumentationKey;
-let client = appInsights.defaultClient;
+const ikey = process.env.InstrumentationKey || '80acad05-fdee-417d-9ea4-6611e32f2719';
 
 // Middleware
 app.use((req, res, next) => {
-    console.info(req.method + " " + req.url);
+    let msg = req.method + " " + req.url;
+    console.info(msg);
+    client.trackTrace({message: msg});
     next();
 });
 
@@ -98,15 +99,15 @@ app.get("/api/error", (req, res, next) => {
 });
 
 app.get("/status", (req, res, next) => {
-    // try {
-    //     /// Test DB connection
-    // } catch {
-    //     ///
-    //     client.trackEvent({name: "Database Failure"})
-    // }
-    client.trackEvent({name: "Database Failure"})
-    client.flush();
-    res.status(500).send("");
+    try {
+        /// Test DB connection
+    } catch(error) {
+        ///
+        client.trackEvent({name: "Database_Connectivity_Failure"})
+        res.status(500).json(error);
+        return;
+    }
+    res.send("");
 });
 
 app.get("/api/dependency", async (req, res, next) => {
