@@ -20,7 +20,7 @@ let client = appInsights.defaultClient;
 
 // fields
 const port = process.env.PORT || 3000;
-const ikey = process.env.InstrumentationKey || '80acad05-fdee-417d-9ea4-6611e32f2719';
+const ikey = process.env.InstrumentationKey;
 
 // Middleware
 app.use((req, res, next) => {
