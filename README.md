@@ -6,6 +6,9 @@
 
 ## Out of the box
 
+- Out of the box the Application Insights SDK is very capable.
+- It can automatically track many events without having to write additional code.
+
 ```
 appInsights.setup("<instrumentation_key>")
     .setAutoDependencyCorrelation(true)
@@ -21,6 +24,8 @@ appInsights.setup("<instrumentation_key>")
 ```
 
 ## Extensibility
+
+- However, to achieve a 100% there are custom events that can be leveraged
 
 ```
 client.trackEvent({name: "my custom event", properties: {customProperty: "custom property value"}});
