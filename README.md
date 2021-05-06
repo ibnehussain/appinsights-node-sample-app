@@ -30,3 +30,19 @@ client.trackTrace({message: "trace message"});
 client.trackDependency({target:"http://dbname", name:"select customers proc", data:"SELECT * FROM Customers", duration:231, resultCode:0, success: true, dependencyTypeName: "ZSQL"});
 client.trackRequest({name:"GET /customers", url:"http://myserver/customers", duration:309, resultCode:200, success:true});
 ```
+
+### Example - Check database connectivity in a liveliness probe
+
+```
+app.get("/status", (req, res, next) => {
+    // try {
+    //     /// Test DB connection
+    // } catch {
+    //     ///
+    //     client.trackEvent({name: "Database Failure"})
+    // }
+    client.trackEvent({name: "Database Failure"})
+    client.flush();
+    res.status(500).send("");
+});
+```` 
