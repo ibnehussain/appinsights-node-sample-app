@@ -3,6 +3,10 @@ const express = require("express");
 const axios = require('axios');
 let appInsights = require('applicationinsights');
 
+// Configuration
+const port = process.env.PORT || 3000;
+const ikey = process.env.InstrumentationKey || '80acad05-fdee-417d-9ea4-6611e32f2719';
+
 // Instances and configuration
 const app = express();
 appInsights.setup(ikey)
@@ -14,13 +18,10 @@ appInsights.setup(ikey)
     .setAutoCollectConsole(true)
     .setUseDiskRetryCaching(true)
     .setSendLiveMetrics(false)
-    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
+    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
     .start();
 let client = appInsights.defaultClient;
 
-// fields
-const port = process.env.PORT || 3000;
-const ikey = process.env.InstrumentationKey || '80acad05-fdee-417d-9ea4-6611e32f2719';
 
 // Middleware
 app.use((req, res, next) => {
