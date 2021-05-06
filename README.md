@@ -1,4 +1,4 @@
-# Node/Express Sample App with Azure Application Insights
+# NodeJs/Express Sample App with Azure Application Insights
 
 ## Reference Document
 
