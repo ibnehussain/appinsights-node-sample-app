@@ -50,6 +50,8 @@ app.get("/status", (req, res, next) => {
 });
 ```` 
 
+> Usage: In Azure, you could create an alert when custom events are received.
+
 ## Sample App
 
 ```
