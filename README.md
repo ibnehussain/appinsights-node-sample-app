@@ -25,7 +25,7 @@ appInsights.setup("<instrumentation_key>")
 
 ## Extensibility
 
-- However, to achieve a 100% there are custom events that can be leveraged
+- However, to achieve a 100% advantage of the SDK, there are many custom methods that can be leveraged.
 
 ```
 client.trackEvent({name: "my custom event", properties: {customProperty: "custom property value"}});
