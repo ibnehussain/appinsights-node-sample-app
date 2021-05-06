@@ -35,14 +35,12 @@ client.trackRequest({name:"GET /customers", url:"http://myserver/customers", dur
 
 ```
 app.get("/status", (req, res, next) => {
-    // try {
-    //     /// Test DB connection
-    // } catch {
-    //     ///
-    //     client.trackEvent({name: "Database Failure"})
-    // }
-    client.trackEvent({name: "Database Failure"})
-    client.flush();
-    res.status(500).send("");
+    try {
+         /// Test DB connection
+    } catch(error) {    
+         client.trackEvent({name: "Database Connectivity Failure"})
+         res.status(500).send({error: error});
+    }
+    res.send("");    
 });
 ```` 
