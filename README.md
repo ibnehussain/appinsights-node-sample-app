@@ -71,11 +71,12 @@ appInsights.setup(ikey)
     .setSendLiveMetrics(false)
     .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
     .start();
-let client = appInsights.defaultClient;
+
 
 // fields
 const port = process.env.PORT || 3000;
 const ikey = process.env.InstrumentationKey;
+let client = appInsights.defaultClient;
 
 // Middleware
 app.use((req, res, next) => {
