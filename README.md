@@ -72,7 +72,7 @@ appInsights.setup(ikey)
     .setAutoCollectDependencies(true)
     .setAutoCollectConsole(true)
     .setUseDiskRetryCaching(true)
-    .setSendLiveMetrics(false)
+    .setSendLiveMetrics(true)
     .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
     .start();
 let client = appInsights.defaultClient;
